@@ -37,41 +37,44 @@ public class LoginActivity extends AppCompatActivity {
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(editTextEmail.getText() + ":" + editTextPwd.getText());
-                Log.d("LOGIN", "onClick: email " + editTextEmail.getText());
-                Log.d("LOGIN", "onClick: pwd " + editTextPwd.getText());
-
-                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                String url ="http://192.168.0.103:8081/login";
-
-                JSONObject credentials = new JSONObject();
-                try {
-                    credentials.put("email", editTextEmail.getText());
-                    credentials.put("password", editTextPwd.getText());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                JsonObjectRequest loginRequest = new JsonObjectRequest(url, credentials,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("Tag", "Response is: "+ response);
-                                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                                startActivity(i);
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        int duration = Toast.LENGTH_LONG;
-
-                        Toast toast = Toast.makeText(LoginActivity.this, "Login Failed", duration);
-                        toast.show();
-                    }
-                });
-
-                queue.add(loginRequest);
+                login(editTextEmail.getText().toString(), editTextPwd.getText().toString());
             }
         });
+    }
+
+    private void login(String email, String pwd){
+        Log.d("LOGIN", "onClick: email " + email);
+        Log.d("LOGIN", "onClick: pwd " + pwd);
+
+        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+        String url ="http://192.168.0.103:8081/login";
+
+        JSONObject credentials = new JSONObject();
+        try {
+            credentials.put("email", email);
+            credentials.put("password", pwd);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest loginRequest = new JsonObjectRequest(url, credentials,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Tag", "Response is: "+ response);
+                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(i);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(LoginActivity.this, "Login Failed", duration);
+                toast.show();
+            }
+        });
+
+        queue.add(loginRequest);
     }
 }
