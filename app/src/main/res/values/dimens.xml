@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_name">36dp</dimen>
+    <dimen name="large">24dp</dimen>
+    <dimen name="medium">16dp</dimen>
+    <dimen name="small">14dp</dimen>
+    <dimen name="xsmall">12dp</dimen>
+    <dimen name="splash_logo_width">262dp</dimen>
+    <dimen name="splash_logo_height">215dp</dimen>
+</resources>
