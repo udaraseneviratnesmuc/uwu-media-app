@@ -1,10 +1,12 @@
-package com.uwu.media.app;
+package com.uwu.media.app.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.uwu.media.app.R;
+
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
