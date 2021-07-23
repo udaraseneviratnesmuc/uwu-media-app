@@ -2,8 +2,6 @@
 <resources>
     <color name="primary">#E2791D</color>
     <color name="secondary">#004F94</color>
-    <color name="ternary">#117E3F</color>
-    <color name="font_disabled_color">#6C6565</color>
     <color name="black">#1F1F1F</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

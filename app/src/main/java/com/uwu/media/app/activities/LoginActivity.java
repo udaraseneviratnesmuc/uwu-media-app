@@ -2,12 +2,14 @@ package com.uwu.media.app.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,23 +52,25 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                // Request a string response from the provided URL.
                 JsonObjectRequest loginRequest = new JsonObjectRequest(url, credentials,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                // Display the first 500 characters of the response string.
                                 Log.d("Tag", "Response is: "+ response);
+                                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(i);
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("Tag", "Response is: "+ error);
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(LoginActivity.this, "Login Failed", duration);
+                        toast.show();
                     }
                 });
 
                 queue.add(loginRequest);
-
             }
         });
     }
